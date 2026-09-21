@@ -15,7 +15,7 @@ class subscriber extends uvm_subscriber#(seq_item);
             bins high={[32'h80000000:32'hFFFFFFFF]};
         }
         cp_WSTRB:coverpoint tr.WSTRB{
-            bins strb[]={1,2,4,8,15};
+            bins strb[]={0,1,2,4,8,15};
         }
 
         cp_WDATA_WSTRB:cross cp_WDATA,cp_WSTRB;
