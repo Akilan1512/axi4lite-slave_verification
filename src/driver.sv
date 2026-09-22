@@ -53,6 +53,7 @@ class driver extends uvm_driver #(seq_item);
                 vif.drv_cb.AWADDR<=req.AWADDR;
                 vif.drv_cb.AWPROT<=req.AWPROT;
                 vif.drv_cb.AWVALID<=1;
+                `uvm_info("DRV",$sformatf("Sending write tX to DUT Addr:%0h|Prot:%0d",req.AWADDR,req.AWPROT),UVM_LOW)
                 `uvm_info("DRV", "waiting for awready", UVM_LOW)
                 @(vif.drv_cb iff vif.drv_cb.AWREADY==1);
                 `uvm_info("DRV","got awready", UVM_LOW)
@@ -63,6 +64,7 @@ class driver extends uvm_driver #(seq_item);
                 vif.drv_cb.WDATA<=req.WDATA;
                 vif.drv_cb.WSTRB<=req.WSTRB;
                 vif.drv_cb.WVALID<=1;
+                `uvm_info("DRV",$sformatf("Sending write tX to DUT Data:%0h|wstrb:%b",req.WDATA,req.WSTRB),UVM_LOW)
                 `uvm_info("DRV", "waiting for wready", UVM_LOW)
                 @(vif.drv_cb iff vif.drv_cb.WREADY==1);
                 `uvm_info("DRV","got wready", UVM_LOW)
@@ -83,6 +85,7 @@ class driver extends uvm_driver #(seq_item);
         vif.drv_cb.ARADDR<=req.ARADDR;
         vif.drv_cb.ARPROT<=req.ARPROT;
         vif.drv_cb.ARVALID<=1;
+        `uvm_info("DRV",$sformatf("Reading read tX from DUT Addr:%0h|Prot:%0d",req.ARADDR,req.ARPROT),UVM_LOW)
         @(vif.drv_cb iff vif.drv_cb.ARREADY==1);
         vif.drv_cb.ARVALID<=0;
         @(vif.drv_cb);
